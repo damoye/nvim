@@ -1,37 +1,16 @@
 return {
   "stevearc/overseer.nvim",
-  dependencies = {
-    "stevearc/dressing.nvim",
-    "nvim-telescope/telescope.nvim",
-    "rcarriga/nvim-notify",
-  },
-  cmd = {
-    "OverseerOpen",
-    "OverseerClose",
-    "OverseerToggle",
-    "OverseerSaveBundle",
-    "OverseerLoadBundle",
-    "OverseerDeleteBundle",
-    "OverseerRunCmd",
-    "OverseerRun",
-    "OverseerInfo",
-    "OverseerBuild",
-    "OverseerQuickAction",
-    "OverseerTaskAction",
-    "OverseerClearCache",
-  },
   keys = {
-    { "<Leader>o", "", desc = "+Overseer" },
     { "<Leader>ow", "<Cmd>OverseerToggle<CR>", desc = "Overseer Toggle" },
     { "<Leader>oo", "<Cmd>OverseerRun<CR>", desc = "Overseer Run" },
     { "<Leader>oq", "<Cmd>OverseerQuickAction<CR>", desc = "Overseer Quick Action" },
     { "<Leader>ot", "<Cmd>OverseerTaskAction<CR>", desc = "Overseer Task action" },
     { "<Leader>oi", "<Cmd>OverseerInfo<CR>", desc = "Overseer Info" },
-    { "<Leader>ob", "<Cmd>OverseerRun go\\ build<CR>", desc = "Go Build" },
-    { "<Leader>or", "<Cmd>OverseerRun run\\ script<CR>", desc = "Run" },
+    { "<Leader>ob", "<Cmd>OverseerRun gobuild<CR>", desc = "Go Build" },
+    { "<Leader>or", "<Cmd>OverseerRun run<CR>", desc = "Run" },
   },
   opts = {
-    templates = { "user.go_build", "user.run_script", "builtin" },
+    templates = { "user.gobuild", "user.run", "builtin" },
     task_list = {
       bindings = {
         ["<C-q>"] = false,
