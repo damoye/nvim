@@ -22,7 +22,6 @@ return {
     { "<Leader>tS", function() require("neotest").run.stop() end, desc = "Test Stop" },
   },
   config = function()
-    ---@diagnostic disable-next-line: missing-fields
     require("neotest").setup({
       discovery = { enabled = false, concurrent = 0 },
       adapters = {
