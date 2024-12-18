@@ -26,7 +26,7 @@ return {
       sections = {
         lualine_x = {
           function()
-            return string.format("[%s]", require("codeium.virtual_text").status_string())
+            return string.format(" [%s]", require("codeium.virtual_text").status_string())
           end,
           "filetype",
         },

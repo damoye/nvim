@@ -22,15 +22,13 @@ return {
     { "<Leader>tS", function() require("neotest").run.stop() end, desc = "Test Stop" },
   },
   config = function()
-    ---@diagnostic disable-next-line: missing-fields
     require("neotest").setup({
-      discovery = { enabled = false, concurrent = 0 },
+      discovery = { enabled = false },
       adapters = {
         require("neotest-golang")({
           go_test_args = { "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out" },
         }),
       },
     })
-    require("neotest.logging"):set_level(vim.log.levels.DEBUG)
   end,
 }
