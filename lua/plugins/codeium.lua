@@ -1,12 +1,13 @@
 return {
   "Exafunction/codeium.nvim",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/nvim-cmp",
     "nvim-lualine/lualine.nvim",
   },
   cmd = "Codeium",
   event = "InsertEnter",
+  build = ":Codeium Auth",
   config = function()
     require("codeium").setup({
       enable_cmp_source = false,
@@ -26,7 +27,7 @@ return {
       sections = {
         lualine_x = {
           function()
-            return string.format("[%s]", require("codeium.virtual_text").status_string())
+            return string.format(" [%s]", require("codeium.virtual_text").status_string())
           end,
           "filetype",
         },

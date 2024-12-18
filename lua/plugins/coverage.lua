@@ -1,7 +1,6 @@
 return {
   "andythigpen/nvim-coverage",
   dependencies = { "nvim-lua/plenary.nvim" },
-  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   --stylua: ignore
   keys = {
     { "<Leader>c", "", desc = "+Coverage" },

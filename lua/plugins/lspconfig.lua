@@ -4,31 +4,28 @@ return {
   dependencies = {
     { "williamboman/mason.nvim", config = true },
     "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
     { "j-hui/fidget.nvim", opts = {} },
-    { "folke/neodev.nvim", opts = {} },
     "saghen/blink.cmp",
   },
   config = function()
-    local servers = {
-      gopls = { settings = { gopls = { gofumpt = true } } },
-      lua_ls = { settings = { Lua = { completion = { callSnippet = "Replace" } } } },
-    }
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, { "gofumpt", "stylua" })
     require("mason").setup()
-    require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+    require("mason-lspconfig").setup({ automatic_installation = true })
+    local mr = require("mason-registry")
+    for _, tool in ipairs({ "gofumpt", "stylua", "delve" }) do
+      local p = mr.get_package(tool)
+      if not p:is_installed() then
+        p:install()
+      end
+    end
 
     local capabilities = require("blink.cmp").get_lsp_capabilities()
-    require("mason-lspconfig").setup({
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = capabilities
-          require("lspconfig")[server_name].setup(server)
-        end,
-      },
+    require("lspconfig").gopls.setup({
+      settings = { gopls = { gofumpt = true } },
+      capabilities = capabilities,
+    })
+    require("lspconfig").lua_ls.setup({
+      settings = { gopls = { completion = { callSnippet = "Replace" } } },
+      capabilities = capabilities,
     })
 
     vim.api.nvim_create_autocmd("LspAttach", {
