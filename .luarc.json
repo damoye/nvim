@@ -1,0 +1,8 @@
+{
+    "diagnostics.disable": [
+        "missing-fields"
+    ],
+    "diagnostics.globals": [
+        "os"
+    ]
+}

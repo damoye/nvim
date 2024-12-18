@@ -1,5 +1,5 @@
 return {
-  name = "go build",
+  name = "gobuild",
   builder = function()
     return {
       cmd = { "go", "build", vim.fn.expand("%:p:h") },
